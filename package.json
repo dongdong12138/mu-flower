@@ -1,0 +1,26 @@
+{
+  "name": "mu-flower",
+  "version": "0.0.1",
+  "description": "慕尚花坊",
+  "main": "miniprogram/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dongdong12138/mu-flower.git"
+  },
+  "keywords": [
+    "小程序",
+    "微信小程序"
+  ],
+  "author": "BarryDong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dongdong12138/mu-flower/issues"
+  },
+  "homepage": "https://github.com/dongdong12138/mu-flower#readme",
+  "dependencies": {
+    "@vant/weapp": "^1.11.6"
+  }
+}
