@@ -1,2 +1,7 @@
 <button type="primary" bindtap="showToast">show toast</button>
 <button type="primary" bindtap="showModal">show modal</button>
+
+<button type="primary" bindtap="setStorage">存储数据</button>
+<button type="primary" bindtap="getStorage">获取数据</button>
+<button type="primary" bindtap="removeStorage">删除数据</button>
+<button type="primary" bindtap="clearStorage">清空数据</button>
