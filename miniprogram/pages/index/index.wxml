@@ -1,1 +1,2 @@
-<view class="test">首页</view>
+<button type="primary" bindtap="showToast">show toast</button>
+<button type="primary" bindtap="showModal">show modal</button>
