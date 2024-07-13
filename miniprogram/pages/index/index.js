@@ -42,10 +42,7 @@ Page({
     clearStorageAsync('name').then(() => {})
   },
   async handleRequest() {
-    const result = await instance.request({
-      url: 'https://gmall-prod.atguigu.cn/mall-api/index/findBanner',
-      method: 'GET'
-    })
+    const result = await instance.request({ url: '/index/findBanner' })
     console.log('result', result)
   }
 })
