@@ -3,7 +3,7 @@ class WxRequest {
     baseUrl: '',
     method: 'GET',
     header: {
-      'content-type': 'application/json'
+      'Content-Type': 'application/json'
     },
     timeout: 60000,
   }
@@ -18,6 +18,7 @@ class WxRequest {
 
     // 合并请求参数
     const mergedOptions = { ...this.options, ...options }
+    console.log('mergedOptions', mergedOptions)
 
     return new Promise((resolve, reject) => {
       wx.request({
@@ -30,6 +31,26 @@ class WxRequest {
         }
       })
     })
+  }
+
+  get(url, data = {}, options = {}) {
+    const mergedOptions = { url, data, method: 'GET', ...options }
+    return this.request(mergedOptions)
+  }
+
+  post(url, data = {}, options = {}) {
+    const mergedOptions = { url, data, method: 'POST', ...options }
+    return this.request(mergedOptions)
+  }
+
+  put(url, data = {}, options = {}) {
+    const mergedOptions = { url, data, method: 'PUT', ...options }
+    return this.request(mergedOptions)
+  }
+
+  delete(url, data = {}, options = {}) {
+    const mergedOptions = { url, data, method: 'DELETE', ...options }
+    return this.request(mergedOptions)
   }
 }
 

@@ -42,7 +42,9 @@ Page({
     clearStorageAsync('name').then(() => {})
   },
   async handleRequest() {
-    const result = await instance.request({ url: '/index/findBanner' })
+    // const result = await instance.request({ url: '/index/findBanner' })
+    // console.log('result', result)
+    const result = await instance.get('/index/findBanner', { test: 'test' }, { timeout: 30000 })
     console.log('result', result)
   }
 })
