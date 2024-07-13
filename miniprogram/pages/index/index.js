@@ -3,6 +3,7 @@ import {
   setStorageSync, getStorageSync, removeStorageSync, clearStorageSync,
   setStorageAsync, getStorageAsync, removeStorageAsync, clearStorageAsync
 } from '../../utils/storage'
+import instance from '../../utils/request'
 
 Page({
   data: {},
@@ -39,5 +40,12 @@ Page({
   clearStorage() {
     // clearStorageSync()
     clearStorageAsync('name').then(() => {})
+  },
+  async handleRequest() {
+    const result = await instance.request({
+      url: 'https://gmall-prod.atguigu.cn/mall-api/index/findBanner',
+      method: 'GET'
+    })
+    console.log('result', result)
   }
 })
