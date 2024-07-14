@@ -69,6 +69,10 @@ class WxRequest {
     const mergedOptions = { url, data, method: 'DELETE', ...options }
     return this.request(mergedOptions)
   }
+
+  all(...promises) {
+    return Promise.all(promises)
+  }
 }
 
 export default WxRequest

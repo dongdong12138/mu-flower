@@ -44,7 +44,11 @@ Page({
   async handleRequest() {
     // const result = await instance.request({ url: '/index/findBanner' })
     // console.log('result', result)
-    const result = await instance.get('/index/findBanner').catch(err => err)
+    // const result = await instance.get('/index/findBanner').catch(err => err)
+    // console.log('result', result)
+    const result = await instance.all(
+      instance.get('/index/findBanner'), instance.get('/index/findCategory1')
+    ).catch(err => err)
     console.log('result', result)
   }
 })
