@@ -20,6 +20,8 @@ class WxRequest {
   }
 
   request(options) {
+    wx.showLoading({ title: '数据加载中...' })
+
     // 拼接完整的请求地址
     options.url = this.options.baseUrl + options.url
 
@@ -45,6 +47,9 @@ class WxRequest {
           // 响应拦截器
           const resultErr = this.interceptors.response(mergedErr)
           reject(resultErr)
+        },
+        complete: () => {
+          wx.hideLoading()
         }
       })
     })
