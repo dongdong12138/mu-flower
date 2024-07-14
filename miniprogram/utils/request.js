@@ -1,3 +1,5 @@
+import { toast } from './extendApi'
+
 class WxRequest {
   defaultOptions = {
     baseUrl: '',
@@ -6,6 +8,11 @@ class WxRequest {
       'Content-Type': 'application/json'
     },
     timeout: 60000,
+  }
+
+  interceptors = {
+    request: config => config,
+    response: response => response
   }
 
   constructor(options = {}) {
@@ -17,17 +24,27 @@ class WxRequest {
     options.url = this.options.baseUrl + options.url
 
     // 合并请求参数
-    const mergedOptions = { ...this.options, ...options }
-    console.log('mergedOptions', mergedOptions)
+    let mergedOptions = { ...this.options, ...options }
+
+    // 请求拦截器
+    mergedOptions = this.interceptors.request(mergedOptions)
 
     return new Promise((resolve, reject) => {
       wx.request({
         ...mergedOptions,
         success: (res) => {
-          resolve(res)
+          // 合并响应结果与请求参数
+          const mergedRes = { ...res, config: { ...mergedOptions }, isSuccess: true }
+          // 响应拦截器
+          const resultRes = this.interceptors.response(mergedRes)
+          resolve(resultRes)
         },
         fail: (err) => {
-          reject(err)
+          // 合并错误信息与请求参数
+          const mergedErr = { ...err, config: { ...mergedOptions }, isSuccess: false }
+          // 响应拦截器
+          const resultErr = this.interceptors.response(mergedErr)
+          reject(resultErr)
         }
       })
     })
@@ -58,5 +75,18 @@ const instance = new WxRequest({
   baseUrl: 'https://gmall-prod.atguigu.cn/mall-api',
   timeout: 10000
 })
+
+instance.interceptors.request = config => {
+  return config
+}
+
+instance.interceptors.response = response => {
+  const { isSuccess, data } = response
+  if (!isSuccess) {
+    toast({ title: '网络异常，请稍后重试~', icon: 'error' })
+    return response
+  }
+  return data
+}
 
 export default instance

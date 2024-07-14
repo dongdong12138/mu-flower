@@ -44,7 +44,7 @@ Page({
   async handleRequest() {
     // const result = await instance.request({ url: '/index/findBanner' })
     // console.log('result', result)
-    const result = await instance.get('/index/findBanner', { test: 'test' }, { timeout: 30000 })
+    const result = await instance.get('/index/findBanner').catch(err => err)
     console.log('result', result)
   }
 })
