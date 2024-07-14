@@ -3,7 +3,7 @@ import {
   setStorageSync, getStorageSync, removeStorageSync, clearStorageSync,
   setStorageAsync, getStorageAsync, removeStorageAsync, clearStorageAsync
 } from '../../utils/storage'
-import instance from '../../utils/request'
+import instance from '../../utils/http'
 
 Page({
   data: {},

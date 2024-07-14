@@ -71,22 +71,4 @@ class WxRequest {
   }
 }
 
-const instance = new WxRequest({
-  baseUrl: 'https://gmall-prod.atguigu.cn/mall-api',
-  timeout: 10000
-})
-
-instance.interceptors.request = config => {
-  return config
-}
-
-instance.interceptors.response = response => {
-  const { isSuccess, data } = response
-  if (!isSuccess) {
-    toast({ title: '网络异常，请稍后重试~', icon: 'error' })
-    return response
-  }
-  return data
-}
-
-export default instance
+export default WxRequest
