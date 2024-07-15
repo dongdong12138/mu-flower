@@ -46,10 +46,20 @@ Page({
     // console.log('result', result)
     // const result = await instance.get('/index/findBanner').catch(err => err)
     // console.log('result', result)
-    const result = await instance.all(
+    const result1 = await instance.all(
       instance.get('/index/findBanner'), instance.get('/index/findCategory1')
     ).catch(err => err)
-    console.log('result', result)
+    console.log('result1', result1)
+
+    const result2 = await instance.all(
+      instance.get('/index/findBanner'), instance.get('/index/findCategory1')
+    ).catch(err => err)
+    console.log('result2', result2)
+
+    const result3 = await instance.all(
+      instance.get('/index/findBanner'), instance.get('/index/findCategory1')
+    ).catch(err => err)
+    console.log('result3', result3)
   },
   async handleRequest2() {
     const result = await instance.get('/index/findBanner', {}, { showLoading: false }).catch(err => err)

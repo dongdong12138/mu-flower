@@ -16,11 +16,15 @@ class WxRequest {
     response: response => response
   }
 
+  queue = []
+
   constructor(options = {}) {
     this.options = Object.assign({}, this.defaultOptions, options)
   }
 
   request(options) {
+    this.timerId && clearTimeout(this.timerId)
+
     // 拼接完整的请求地址
     options.url = this.options.baseUrl + options.url
 
@@ -28,7 +32,10 @@ class WxRequest {
     let mergedOptions = { ...this.options, ...options }
 
     // 显示 loading
-    mergedOptions.showLoading && wx.showLoading({ title: '数据加载中...' })
+    if (mergedOptions.showLoading) {
+      this.queue.length === 0 && wx.showLoading({ title: '数据加载中...' })
+      this.queue.push('request')
+    }
 
     // 请求拦截器
     mergedOptions = this.interceptors.request(mergedOptions)
@@ -51,7 +58,13 @@ class WxRequest {
           reject(resultErr)
         },
         complete: () => {
-          mergedOptions.showLoading && wx.hideLoading()
+          if (!mergedOptions.showLoading) return
+          this.queue.pop()
+          this.queue.length === 0 && this.queue.push('request')
+          this.timerId = setTimeout(() => {
+            this.queue.pop()
+            this.queue.length === 0 && wx.hideLoading()
+          }, 100)
         }
       })
     })
