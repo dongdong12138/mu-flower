@@ -3,7 +3,8 @@ import WxRequest from './request'
 
 const instance = new WxRequest({
   baseUrl: 'https://gmall-prod.atguigu.cn/mall-api',
-  timeout: 10000
+  timeout: 10000,
+  // showLoading: false,
 })
 
 instance.interceptors.request = config => {

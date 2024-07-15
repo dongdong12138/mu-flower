@@ -8,6 +8,7 @@ class WxRequest {
       'Content-Type': 'application/json'
     },
     timeout: 60000,
+    showLoading: true,
   }
 
   interceptors = {
@@ -20,13 +21,14 @@ class WxRequest {
   }
 
   request(options) {
-    wx.showLoading({ title: '数据加载中...' })
-
     // 拼接完整的请求地址
     options.url = this.options.baseUrl + options.url
 
     // 合并请求参数
     let mergedOptions = { ...this.options, ...options }
+
+    // 显示 loading
+    mergedOptions.showLoading && wx.showLoading({ title: '数据加载中...' })
 
     // 请求拦截器
     mergedOptions = this.interceptors.request(mergedOptions)
@@ -49,7 +51,7 @@ class WxRequest {
           reject(resultErr)
         },
         complete: () => {
-          wx.hideLoading()
+          mergedOptions.showLoading && wx.hideLoading()
         }
       })
     })

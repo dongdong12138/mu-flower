@@ -41,7 +41,7 @@ Page({
     // clearStorageSync()
     clearStorageAsync('name').then(() => {})
   },
-  async handleRequest() {
+  async handleRequest1() {
     // const result = await instance.request({ url: '/index/findBanner' })
     // console.log('result', result)
     // const result = await instance.get('/index/findBanner').catch(err => err)
@@ -49,6 +49,10 @@ Page({
     const result = await instance.all(
       instance.get('/index/findBanner'), instance.get('/index/findCategory1')
     ).catch(err => err)
+    console.log('result', result)
+  },
+  async handleRequest2() {
+    const result = await instance.get('/index/findBanner', {}, { showLoading: false }).catch(err => err)
     console.log('result', result)
   }
 })

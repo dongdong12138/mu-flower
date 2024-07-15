@@ -6,4 +6,5 @@
 <button type="primary" bindtap="removeStorage">删除数据</button>
 <button type="primary" bindtap="clearStorage">清空数据</button>
 
-<button type="primary" bindtap="handleRequest">发送请求</button>
+<button type="primary" bindtap="handleRequest1">发送请求1</button>
+<button type="primary" bindtap="handleRequest2">发送请求2</button>
