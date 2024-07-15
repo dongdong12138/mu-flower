@@ -32,7 +32,7 @@ class WxRequest {
     let mergedOptions = { ...this.options, ...options }
 
     // 显示 loading
-    if (mergedOptions.showLoading) {
+    if (mergedOptions.showLoading && mergedOptions.method !== 'UPLOAD') {
       this.queue.length === 0 && wx.showLoading({ title: '数据加载中...' })
       this.queue.push('request')
     }
@@ -41,33 +41,50 @@ class WxRequest {
     mergedOptions = this.interceptors.request(mergedOptions)
 
     return new Promise((resolve, reject) => {
-      wx.request({
-        ...mergedOptions,
-        success: (res) => {
-          // 合并响应结果与请求参数
-          const mergedRes = { ...res, config: { ...mergedOptions }, isSuccess: true }
-          // 响应拦截器
-          const resultRes = this.interceptors.response(mergedRes)
-          resolve(resultRes)
-        },
-        fail: (err) => {
-          // 合并错误信息与请求参数
-          const mergedErr = { ...err, config: { ...mergedOptions }, isSuccess: false }
-          // 响应拦截器
-          const resultErr = this.interceptors.response(mergedErr)
-          reject(resultErr)
-        },
-        complete: () => {
-          if (!mergedOptions.showLoading) return
-          this.queue.pop()
-          this.queue.length === 0 && this.queue.push('request')
-          this.timerId = setTimeout(() => {
+      if (mergedOptions.method === 'UPLOAD') {
+        wx.uploadFile({
+          ...mergedOptions,
+          success: (res) => {
+            res.data = JSON.parse(res.data)
+            const mergedRes = Object.assign({}, res, { config: mergedOptions, isSuccess: true })
+            const resultRes = this.interceptors.response(mergedRes)
+            resolve(resultRes)
+          },
+          fail: (err) => {
+            const mergedErr = Object.assign({}, err, { config: mergedOptions, isSuccess: false })
+            const resultErr = this.interceptors.response(mergedErr)
+            reject(resultErr)
+          }
+        })
+      } else {
+        wx.request({
+          ...mergedOptions,
+          success: (res) => {
+            // 合并响应结果与请求参数
+            const mergedRes = { ...res, config: { ...mergedOptions }, isSuccess: true }
+            // 响应拦截器
+            const resultRes = this.interceptors.response(mergedRes)
+            resolve(resultRes)
+          },
+          fail: (err) => {
+            // 合并错误信息与请求参数
+            const mergedErr = { ...err, config: { ...mergedOptions }, isSuccess: false }
+            // 响应拦截器
+            const resultErr = this.interceptors.response(mergedErr)
+            reject(resultErr)
+          },
+          complete: () => {
+            if (!mergedOptions.showLoading) return
             this.queue.pop()
-            this.queue.length === 0 && wx.hideLoading()
-            clearTimeout(this.timerId)
-          }, 100)
-        }
-      })
+            this.queue.length === 0 && this.queue.push('request')
+            this.timerId = setTimeout(() => {
+              this.queue.pop()
+              this.queue.length === 0 && wx.hideLoading()
+              clearTimeout(this.timerId)
+            }, 100)
+          }
+        })
+      }
     })
   }
 
@@ -88,6 +105,11 @@ class WxRequest {
 
   delete(url, data = {}, options = {}) {
     const mergedOptions = { url, data, method: 'DELETE', ...options }
+    return this.request(mergedOptions)
+  }
+
+  upload(url, filePath, name, config = {}) {
+    const mergedOptions = { url, filePath, name, method: 'UPLOAD', ...config }
     return this.request(mergedOptions)
   }
 
