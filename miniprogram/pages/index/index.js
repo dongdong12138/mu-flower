@@ -4,9 +4,17 @@ import {
   setStorageAsync, getStorageAsync, removeStorageAsync, clearStorageAsync
 } from '../../utils/storage'
 import instance from '../../utils/http'
+import { reqIndexData } from '../../api/index'
 
 Page({
   data: {},
+  onLoad(query) {
+    this.getIndexData()
+  },
+  async getIndexData() {
+    const result = await reqIndexData().catch(err => err)
+    console.log('result', result)
+  },
   showToast() {
     toast({
       title: 'Hello, World!',
