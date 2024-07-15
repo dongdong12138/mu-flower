@@ -1,4 +1,3 @@
-import { toast } from './extendApi'
 import WxRequest from './request'
 import env from './env'
 
@@ -19,18 +18,14 @@ instance.interceptors.request = config => {
 instance.interceptors.response = async response => {
   const { isSuccess, data } = response
   if (!isSuccess) {
-    toast({ title: '网络异常，请稍后重试~', icon: 'error' })
-    return response
+    wx.showToast({ title: '网络异常，请稍后重试~', icon: 'error' })
+    return Promise.reject(response)
   }
   switch (data.code) {
     case 200:
       return data
     case 208:
-      const modalStatus = await wx.modal({
-        title: '提示',
-        content: '登录授权过期，请重新登录！',
-        showCancel: false
-      })
+      const modalStatus = await wx.modal({ title: '提示', content: '登录授权过期，请重新登录！', showCancel: false })
       // 如果点击了确定，先清空本地的 token，然后跳转到登录页面
       if (modalStatus) {
         wx.clearStorageSync()
