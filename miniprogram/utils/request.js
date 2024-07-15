@@ -64,6 +64,7 @@ class WxRequest {
           this.timerId = setTimeout(() => {
             this.queue.pop()
             this.queue.length === 0 && wx.hideLoading()
+            clearTimeout(this.timerId)
           }, 100)
         }
       })
