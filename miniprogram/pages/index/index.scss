@@ -13,3 +13,29 @@
 .container {
   border: 2rpx solid green;
 }
+
+// 广告区域
+.adver {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 18rpx;
+  overflow: hidden;
+  display: flex;
+  padding: 10rpx 8rpx;
+  .adver-left {
+    width: 50%;
+    padding: 8rpx 8rpx 0 8rpx;
+  }
+  .adver-right {
+    width: 50%;
+    display: flex; flex-direction: column;
+    padding: 8rpx 8rpx 0 8rpx;
+    view:last-child {
+      padding-top: 8rpx;
+    }
+  }
+  image {
+    width: 100%;
+  }
+}
