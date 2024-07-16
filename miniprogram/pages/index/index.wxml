@@ -1,8 +1,12 @@
 <view class="index-container">
-  <!--首页背景图-->
+  <!-- 首页背景图 -->
   <view class="window-bgc"></view>
 
   <view class="container">
+    <!-- 轮播图 -->
     <banner />
+
+    <!-- 导航分类 -->
+    <entrance />
   </view>
 </view>
