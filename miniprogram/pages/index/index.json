@@ -3,5 +3,6 @@
     "banner": "./banner/banner",
     "entrance": "./entrance/entrance",
     "goods-list": "/components/goods-list/goods-list"
-  }
+  },
+  "navigationBarTitleText": "慕尚花坊"
 }
