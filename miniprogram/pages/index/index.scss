@@ -1,3 +1,16 @@
-.test {
-    color: red;
+.index-container {
+  position: relative;
+}
+
+// 首页背景图
+.window-bgc {
+  width: 100%; height: 200rpx;
+  background-color: #f3514f;
+  border-radius: 0 0 20rpx 20rpx;
+  position: absolute; left: 0; top: 0;
+}
+
+.container {
+  border: 2rpx solid green;
+  height: 500rpx;
 }

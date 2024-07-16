@@ -1,0 +1,13 @@
+page {
+  min-height: 100vh;
+}
+
+.container {
+  box-sizing: border-box;
+  display: flex; flex-direction: column;
+  padding: 16rpx;
+}
+
+.img {
+  width: 100%;
+}

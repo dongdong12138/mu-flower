@@ -1,1 +1,8 @@
-<view>首页</view>
+<view class="index-container">
+  <!--首页背景图-->
+  <view class="window-bgc"></view>
+
+  <view class="container">
+    <banner />
+  </view>
+</view>
