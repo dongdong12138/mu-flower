@@ -7,6 +7,7 @@ Page({
     activeList: [],
     guessList: [],
     hotList: [],
+    loading: true,
   },
   onLoad(query) {
     this.getIndexData()
@@ -19,6 +20,7 @@ Page({
       activeList: result[2].data,
       guessList: result[3].data,
       hotList: result[4].data,
+      loading: false,
     })
   },
 })
