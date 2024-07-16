@@ -4,6 +4,7 @@ Page({
   data: {
     bannerList: [],
     categoryList: [],
+    activeList: [],
   },
   onLoad(query) {
     this.getIndexData()
@@ -14,6 +15,7 @@ Page({
     this.setData({
       bannerList: result[0].data,
       categoryList: result[1].data,
+      activeList: result[2].data,
     })
   },
 })
