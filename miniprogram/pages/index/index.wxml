@@ -4,7 +4,7 @@
 
   <view class="container">
     <!-- 轮播图 -->
-    <banner />
+    <banner bannerList="{{ bannerList }}" />
 
     <!-- 导航分类 -->
     <entrance />

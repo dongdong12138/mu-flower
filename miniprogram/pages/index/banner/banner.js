@@ -1,14 +1,14 @@
 Component({
   properties: {
-    bannerList: {
-      type: Array,
-      value: [
-        '../../../assets/banner/banner-1.jpg',
-        '../../../assets/banner/banner-2.jpg',
-        '../../../assets/banner/banner-3.jpg'
-      ]
-    }
+    bannerList: { type: Array, value: [] }
   },
-  data: {},
-  methods: {}
+  data: {
+    activeIndex: 0
+  },
+  methods: {
+    getSwiperIndex(event) {
+      const { current } = event.detail
+      this.setData({ activeIndex: current })
+    }
+  }
 })

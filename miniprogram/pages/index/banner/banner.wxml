@@ -3,17 +3,21 @@
     autoplay interval="2000" duration="1000"
     indicator-color="rgba(0, 0, 0, .3)" indicator-active-color="#FF734C"
     class="swiper"
+    bind:change="getSwiperIndex"
   >
     <block wx:for="{{ bannerList }}" wx:key="index">
       <swiper-item class="swiper-item">
         <navigator url="/pages/goods/detail/detail?goodsId=id" class="navigator">
-          <image src="{{ item }}" class="img"></image>
+          <image src="{{ item.imageUrl }}" class="img"></image>
         </navigator>
       </swiper-item>
     </block>
   </swiper>
 
   <view class="indicator">
-    <text wx:for="{{ bannerList.length }}" wx:key="index" class="{{ 'active rectangle' }}"></text>
+    <text
+      wx:for="{{ bannerList.length }}" wx:key="index"
+      class="{{ activeIndex === index ? 'active rectangle' : 'rectangle' }}"
+    ></text>
   </view>
 </view>
