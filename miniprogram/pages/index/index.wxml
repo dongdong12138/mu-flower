@@ -29,5 +29,9 @@
         </view>
       </view>
     </view>
+
+    <!-- 商品列表 -->
+    <goods-list title="猜你喜欢"></goods-list>
+    <goods-list title="人气推荐"></goods-list>
   </view>
 </view>

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "banner": "./banner/banner",
-    "entrance": "./entrance/entrance"
+    "entrance": "./entrance/entrance",
+    "goods-list": "/components/goods-list/goods-list"
   }
 }
