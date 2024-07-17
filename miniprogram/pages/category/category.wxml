@@ -1,0 +1,16 @@
+<view class="category-container">
+  <scroll-view class="category-left-view" scroll-y>
+    <view class="left-view-item active">爱礼精选</view>
+    <view class="left-view-item">鲜花玫瑰</view>
+    <view class="left-view-item">永生玫瑰</view>
+    <view class="left-view-item">玫瑰珠宝</view>
+  </scroll-view>
+  <scroll-view class="category-right-view" scroll-y>
+    <view wx:for="{{ 10 }}" wx:key="index" class="right-view-item">
+      <navigator class="navigator" url="/pages/goods/list/list?category2Id=1">
+        <image class="" src="../../assets/images/cate-1.png"></image>
+        <text class="goods_item_name">真情告白</text>
+      </navigator>
+    </view>
+  </scroll-view>
+</view>
