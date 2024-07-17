@@ -4,9 +4,10 @@
     "pages/category/category"
   ],
   "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarBackgroundColor": "#ffffff"
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "慕尚花坊",
+    "navigationBarBackgroundColor": "#f3514f",
+    "backgroundTextStyle": "light"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
