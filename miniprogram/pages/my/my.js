@@ -1,4 +1,7 @@
-Page({
+import { ComponentWithStore } from 'mobx-miniprogram-bindings'
+import { userStore } from '../../store/user'
+
+ComponentWithStore({
   data: {
     initpanel: [
       {
@@ -18,13 +21,16 @@ Page({
       }
     ]
   },
-  onLoad: function (options) {
-
+  storeBindings: {
+    store: userStore,
+    fields: ['token', 'userInfo']
   },
-  // 跳转到登录页面
-  toLoginPage() {
-    wx.navigateTo({
-      url: '/pages/login/login'
-    })
-  }
+  methods: {
+    // 跳转到登录页面
+    toLoginPage() {
+      wx.navigateTo({
+        url: '/pages/login/login'
+      })
+    }
+  },
 })

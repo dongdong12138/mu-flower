@@ -5,14 +5,27 @@
   </view>
 
   <view class="bottom-show">
-    <!-- 登录面板 -->
-    <view wx class="user-container section" bindtap="toLoginPage">
+    <!-- 未登录 -->
+    <view wx:if="{{ !token }}" class="user-container section" bindtap="toLoginPage">
       <view class="avatar-container">
         <image src="/assets/images/avatar.png"></image>
         <view class="no-login">
           <text class="ellipsis">未登录</text>
           <text>点击授权登录</text>
         </view>
+      </view>
+    </view>
+
+    <!-- 登录后 -->
+    <view wx:else class="user-container section">
+      <view class="avatar-container">
+        <image src="{{ userInfo.headimgurl }}"></image>
+        <view class="no-login">
+          <text class="ellipsis">{{ userInfo.nickname }}</text>
+        </view>
+      </view>
+      <view class="setting">
+        <navigator url="/modules/settingModule/pages/settings/settings">设置</navigator>
       </view>
     </view>
 
@@ -24,7 +37,7 @@
       </view>
       <view class="order-content-wrap">
         <view class="order-content-item" wx:for="{{ initpanel }}" wx:key="index">
-          <navigator url="{{ item.url }}">
+          <navigator url="{{ token ? item.url : '/pages/login/login' }}">
             <view class="iconfont {{ item.iconfont }}"></view>
             <text>{{ item.title }}</text>
           </navigator>
@@ -56,6 +69,6 @@
     </view>
 
     <!-- 底部面板 -->
-    <view class="info-footer"> 尚硅谷技术支持 </view>
+    <view class="info-footer">尚硅谷技术支持</view>
   </view>
 </view>
