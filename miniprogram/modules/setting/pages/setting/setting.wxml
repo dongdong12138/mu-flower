@@ -1,6 +1,6 @@
 <view class="container">
   <view class="setting-list">
-    <navigator url="/pages/profile/profile" hover-class="none" class="setting-item">
+    <navigator url="/modules/setting/pages/profile/profile" hover-class="none" class="setting-item">
       修改个人资料
     </navigator>
   </view>
