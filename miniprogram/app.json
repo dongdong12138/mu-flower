@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/category/category",
     "pages/login/login",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/profile/profile"
   ],
   "window": {
     "navigationBarTextStyle": "white",
@@ -30,6 +31,9 @@
         "selectedIconPath": "assets/tabbar/cate-active.png"
       }
     ]
+  },
+  "usingComponents": {
+    "van-dialog": "@vant/weapp/dialog/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
