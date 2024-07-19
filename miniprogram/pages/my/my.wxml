@@ -25,7 +25,7 @@
         </view>
       </view>
       <view class="setting">
-        <navigator url="/modules/settingModule/pages/settings/settings">设置</navigator>
+        <navigator url="/modules/setting/pages/setting/setting">设置</navigator>
       </view>
     </view>
 

@@ -3,9 +3,7 @@
     "pages/index/index",
     "pages/category/category",
     "pages/login/login",
-    "pages/my/my",
-    "pages/profile/profile",
-    "pages/setting/setting"
+    "pages/my/my"
   ],
   "window": {
     "navigationBarTextStyle": "white",
@@ -35,6 +33,22 @@
   },
   "usingComponents": {
     "van-dialog": "@vant/weapp/dialog/index"
+  },
+  "subPackages": [
+    {
+      "root": "modules/setting",
+      "name": "setting",
+      "pages": [
+        "pages/setting/setting",
+        "pages/profile/profile"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/my/my": {
+      "network": "all",
+      "packages": ["setting"]
+    }
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
