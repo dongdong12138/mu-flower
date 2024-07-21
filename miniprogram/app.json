@@ -32,7 +32,11 @@
     ]
   },
   "usingComponents": {
-    "van-dialog": "@vant/weapp/dialog/index"
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-empty": "@vant/weapp/empty/index"
   },
   "subPackages": [
     {
@@ -40,7 +44,8 @@
       "name": "setting",
       "pages": [
         "pages/setting/setting",
-        "pages/profile/profile"
+        "pages/profile/profile",
+        "pages/address/list/list"
       ]
     }
   ],
