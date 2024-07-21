@@ -25,7 +25,7 @@ instance.interceptors.response = async response => {
     case 200:
       return data
     case 208:
-      const modalStatus = await wx.modal({ title: '提示', content: '登录授权过期，请重新登录！', showCancel: false })
+      const modalStatus = await wx.showModal({ title: '提示', content: '登录授权过期，请重新登录！', showCancel: false })
       // 如果点击了确定，先清空本地的 token，然后跳转到登录页面
       if (modalStatus) {
         wx.clearStorageSync()
