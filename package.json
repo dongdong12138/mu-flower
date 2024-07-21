@@ -22,6 +22,7 @@
   "homepage": "https://github.com/dongdong12138/mu-flower#readme",
   "dependencies": {
     "@vant/weapp": "^1.11.6",
+    "async-validator": "^4.2.5",
     "mobx-miniprogram": "^6.12.3",
     "mobx-miniprogram-bindings": "^3.0.1"
   }
