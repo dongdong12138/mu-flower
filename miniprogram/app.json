@@ -45,7 +45,8 @@
       "pages": [
         "pages/setting/setting",
         "pages/profile/profile",
-        "pages/address/list/list"
+        "pages/address/list/list",
+        "pages/address/add/add"
       ]
     }
   ],
